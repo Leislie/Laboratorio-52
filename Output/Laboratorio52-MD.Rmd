@@ -1,0 +1,74 @@
+---
+title: "Laboratorio52-MD"
+author: "Leislie R. Manjarrez O."
+date: "2023-03-15"
+output: html_document
+---
+
+Hecho con gusto por Leislie R. Manjarrez O.
+
+Laboratorio 52- Editando el color de los graficos- Parte 2
+
+Instalar paqueterias
+install.packages("gapminder")
+install.packages("ggplot2")
+
+Llamar la librerias
+```{r}
+library(gapminder)
+library(ggplot2)
+```
+
+Cargar los datos al entorno
+```{r}
+data("gapminder")
+```
+
+Filtrado por año 2007
+```{r}
+gapminder2007 <- gapminder[gapminder$year == '2007',]
+```
+
+Escala continua (variable continua)
+Grafico de puntos por poblacion
+```{r}
+g3 <- ggplot(data = gapminder2007,
+             mapping = aes(x= gdpPercap,
+                           y = lifeExp,
+                           color = log(pop)))+
+  geom_point()
+```
+
+Ver g3
+```{r}
+g3
+```
+
+Cambiar el color de los puntos segun gradiente
+```{r}
+g3 + scale_color_gradient(low = "blue", high = "red")
+```
+
+Volver a cambier el color de los puntos segun gradiente
+```{r}
+g3 + scale_color_gradient2(midpoint = 16, low = "blue", mid = "white", 
+                           high = "red", space= "Lab")
+```
+
+Crear un nuevo objeto reciclando el codigo de boxplot
+```{r}
+g4 <- ggplot(data = gapminder2007,
+             mapping = aes(x= lifeExp,
+                           fill= ..count..))+
+  geom_histogram()
+```
+
+Ver g4
+```{r}
+g4
+```
+
+Cambiar el color de las barras del histograma
+```{r}
+g4 + scale_fill_gradient(low = "blue", high = "red")
+```
